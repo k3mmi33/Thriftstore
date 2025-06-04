@@ -139,7 +139,7 @@ class SalesMenu:
 
             if completed_sale:
                 print(f"\n✅ Sale completed successfully!")
-                print(f"Total: ${completed_sale.final_total:.2f}")
+                print(f"Total: KES{completed_sale.final_total:.2f}")
 
                 # Print receipt option
                 print_receipt = input("\nPrint receipt? (y/N): ").strip().lower()
@@ -173,7 +173,7 @@ class SalesMenu:
                         sale.id,
                         sale.sale_date.strftime('%Y-%m-%d %H:%M') if sale.sale_date else "N/A",
                         customer_name,
-                        f"${sale.final_total:.2f}",
+                        f"KES{sale.final_total:.2f}",
                         sale.status,
                         len(sale.items) if sale.items else 0
                     ])
@@ -210,10 +210,10 @@ class SalesMenu:
                 ["Date", sale.sale_date.strftime('%Y-%m-%d %H:%M:%S') if sale.sale_date else "N/A"],
                 ["Customer", customer_name],
                 ["Status", sale.status],
-                ["Subtotal", f"${sale.subtotal:.2f}"],
-                ["Discount", f"${sale.discount:.2f}"],
-                ["Tax", f"${sale.tax:.2f}"],
-                ["Final Total", f"${sale.final_total:.2f}"]
+                ["Subtotal", f"KES{sale.subtotal:.2f}"],
+                ["Discount", f"KES{sale.discount:.2f}"],
+                ["Tax", f"KES{sale.tax:.2f}"],
+                ["Final Total", f"KES{sale.final_total:.2f}"]
             ]
 
             print(tabulate(details, headers=["Field", "Value"], tablefmt="grid"))
@@ -229,8 +229,8 @@ class SalesMenu:
                     items_data.append([
                         item.name,
                         sale_item.quantity,
-                        f"${sale_item.unit_price:.2f}",
-                        f"${sale_item.total_price:.2f}"
+                        f"KES{sale_item.unit_price:.2f}",
+                        f"KES{sale_item.total_price:.2f}"
                     ])
 
                 headers = ["Item", "Qty", "Unit Price", "Total"]
@@ -269,7 +269,7 @@ class SalesMenu:
             print(f"ID: {sale.id}")
             print(f"Date: {sale.sale_date.strftime('%Y-%m-%d %H:%M') if sale.sale_date else 'N/A'}")
             print(f"Customer: {customer_name}")
-            print(f"Total: ${sale.final_total:.2f}")
+            print(f"Total: KES{sale.final_total:.2f}")
 
             confirm = input("\n⚠️  Are you sure you want to cancel this sale? (y/N): ").strip().lower()
 
@@ -299,14 +299,14 @@ class SalesMenu:
 
             summary_data = [
                 ["Total Sales", summary['total_sales']],
-                ["Total Revenue", f"${summary['total_revenue']:.2f}"],
-                ["Average Sale", f"${summary['average_sale']:.2f}"],
+                ["Total Revenue", f"KES{summary['total_revenue']:.2f}"],
+                ["Average Sale", f"KES{summary['average_sale']:.2f}"],
                 ["Today's Sales", summary['today_sales']],
-                ["Today's Revenue", f"${summary['today_revenue']:.2f}"],
+                ["Today's Revenue", f"KES{summary['today_revenue']:.2f}"],
                 ["This Week's Sales", summary['week_sales']],
-                ["This Week's Revenue", f"${summary['week_revenue']:.2f}"],
+                ["This Week's Revenue", f"KES{summary['week_revenue']:.2f}"],
                 ["This Month's Sales", summary['month_sales']],
-                ["This Month's Revenue", f"${summary['month_revenue']:.2f}"]
+                ["This Month's Revenue", f"KES{summary['month_revenue']:.2f}"]
             ]
 
             print(tabulate(summary_data, headers=["Metric", "Value"], tablefmt="grid"))
@@ -322,7 +322,7 @@ class SalesMenu:
                     items_data.append([
                         item_data['name'],
                         item_data['total_sold'],
-                        f"${item_data['total_revenue']:.2f}"
+                        f"KES{item_data['total_revenue']:.2f}"
                     ])
 
                 headers = ["Item", "Sold", "Revenue"]
@@ -358,12 +358,12 @@ class SalesMenu:
                     print(f"{item.name[:30]:<30} {sale_item.quantity:>3} x ${sale_item.unit_price:>6.2f} = ${sale_item.total_price:>8.2f}")
 
             print("-" * 50)
-            print(f"{'Subtotal:':<40} ${sale.subtotal:>8.2f}")
+            print(f"{'Subtotal:':<40} KES{sale.subtotal:>8.2f}")
             if sale.discount > 0:
-                print(f"{'Discount:':<40} -${sale.discount:>7.2f}")
+                print(f"{'Discount:':<40} -KES{sale.discount:>7.2f}")
             if sale.tax > 0:
-                print(f"{'Tax:':<40} ${sale.tax:>8.2f}")
-            print(f"{'TOTAL:':<40} ${sale.final_total:>8.2f}")
+                print(f"{'Tax:':<40} KES{sale.tax:>8.2f}")
+            print(f"{'TOTAL:':<40} KES{sale.final_total:>8.2f}")
             print("=" * 50)
             print("         Thank you for your purchase!")
             print("=" * 50)

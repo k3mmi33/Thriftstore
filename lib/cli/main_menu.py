@@ -35,9 +35,9 @@ class MainMenu:
 
             dashboard_data = [
                 ["Total Sales", summary['total_sales']],
-                ["Total Revenue", f"${summary['total_revenue']:.2f}"],
+                ["Total Revenue", f"KES{summary['total_revenue']:.2f}"],
                 ["Today's Sales", summary['today_sales']],
-                ["Today's Revenue", f"${summary['today_revenue']:.2f}"]
+                ["Today's Revenue", f"KES{summary['today_revenue']:.2f}"]
             ]
 
             print("📊 DASHBOARD")

@@ -223,7 +223,7 @@ class ReportsMenu:
                     segment,
                     data['count'],
                     f"{(data['count']/len(customers)*100):.1f}%",
-                    f"${data['avg_spending']:.2f}",
+                    f"KES{data['avg_spending']:.2f}",
                     data['characteristics']
                 ])
 
@@ -262,8 +262,8 @@ class ReportsMenu:
                         i,
                         customer['name'][:20],
                         customer['orders'],
-                        f"${customer['avg_order']:.2f}",
-                        f"${customer['total_spent']:.2f}",
+                        f"KES{customer['avg_order']:.2f}",
+                        f"KES{customer['total_spent']:.2f}",
                         customer['segment']
                     ])
 
@@ -302,11 +302,11 @@ class ReportsMenu:
             profit_margin = (gross_profit / summary['total_revenue'] * 100) if summary['total_revenue'] > 0 else 0
 
             revenue_data = [
-                ["💵 Gross Revenue", f"${summary['total_revenue']:.2f}", "100.0%"],
-                ["💸 Total Costs", f"${total_cost:.2f}", f"{(total_cost/summary['total_revenue']*100):.1f}%" if summary['total_revenue'] > 0 else "0%"],
-                ["💰 Gross Profit", f"${gross_profit:.2f}", f"{profit_margin:.1f}%"],
+                ["💵 Gross Revenue", f"KES{summary['total_revenue']:.2f}", "100.0%"],
+                ["💸 Total Costs", f"KES{total_cost:.2f}", f"{(total_cost/summary['total_revenue']*100):.1f}%" if summary['total_revenue'] > 0 else "0%"],
+                ["💰 Gross Profit", f"KES{gross_profit:.2f}", f"{profit_margin:.1f}%"],
                 ["📊 Profit Margin", f"{profit_margin:.2f}%", self._get_margin_rating(profit_margin)],
-                ["💳 Avg Transaction", f"${summary['average_sale']:.2f}", ""],
+                ["💳 Avg Transaction", f"KES{summary['average_sale']:.2f}", ""],
                 ["🎯 Break-even Point", self._calculate_breakeven(), ""]
             ]
             print(tabulate(revenue_data, headers=["Metric", "Amount", "% of Revenue"], tablefmt="fancy_grid"))
@@ -550,7 +550,7 @@ class ReportsMenu:
         """Calculate sales velocity metrics"""
         return [
             ["Items/Day", "24.5", "📈 +5%"],
-            ["Revenue/Hour", "$125.30", "📈 +12%"],
+            ["Revenue/Hour", "KES125.30", "📈 +12%"],
             ["Customer/Day", "18.2", "📊 Stable"]
         ]
 

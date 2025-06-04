@@ -25,7 +25,7 @@ class Sale(Base):
         return self.total_amount + self.tax_amount - self.discount_amount
 
     def __repr__(self):
-        return f"<Sale(id={self.id}, total=${self.final_total}, date='{self.sale_date}')>"
+        return f"<Sale(id={self.id}, total=KES{self.final_total}, date='{self.sale_date}')>"
 
     def to_dict(self):
         return {

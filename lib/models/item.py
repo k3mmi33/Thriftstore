@@ -25,7 +25,7 @@ class Item(Base):
     sale_items = relationship("SaleItem", back_populates="item")
 
     def __repr__(self):
-        return f"<Item(id={self.id}, name='{self.name}', price=${self.price})>"
+        return f"<Item(id={self.id}, name='{self.name}', price=KES{self.price})>"
 
     def to_dict(self):
         return {

@@ -70,7 +70,7 @@ class ItemMenu:
 
             while True:
                 try:
-                    cost = float(input("Cost ($, optional, default 0): ") or "0")
+                    cost = float(input("Cost (KES, optional, default 0): ") or "0")
                     break
                 except ValueError:
                     print("❌ Please enter a valid cost!")
@@ -127,7 +127,7 @@ class ItemMenu:
                         item.id,
                         item.name[:30] + "..." if len(item.name) > 30 else item.name,
                         item.category,
-                        f"${item.price:.2f}",
+                        f"KES{item.price:.2f}",
                         item.quantity,
                         item.condition,
                         status
@@ -168,7 +168,7 @@ class ItemMenu:
                         item.id,
                         item.name[:30] + "..." if len(item.name) > 30 else item.name,
                         item.category,
-                        f"${item.price:.2f}",
+                        f"KES{item.price:.2f}",
                         item.condition,
                         status
                     ])
@@ -264,7 +264,7 @@ class ItemMenu:
             print(f"\nItem to delete:")
             print(f"Name: {item.name}")
             print(f"Category: {item.category}")
-            print(f"Price: ${item.price:.2f}")
+            print(f"Price: KES{item.price:.2f}")
 
             confirm = input("\n⚠️  Are you sure you want to delete this item? (y/N): ").strip().lower()
 
