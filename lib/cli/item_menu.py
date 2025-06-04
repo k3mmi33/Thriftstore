@@ -63,7 +63,7 @@ class ItemMenu:
 
             while True:
                 try:
-                    price = float(input("Price ($): "))
+                    price = float(input("Price (KES): "))
                     break
                 except ValueError:
                     print("❌ Please enter a valid price!")

@@ -21,6 +21,7 @@ class CustomerService:
             )
             session.add(customer)
             session.commit()
+            session.refresh(customer)
             return customer
         except Exception as e:
             session.rollback()
@@ -71,6 +72,7 @@ class CustomerService:
                     if hasattr(customer, key):
                         setattr(customer, key, value)
                 session.commit()
+                session.refresh(customer)
                 return customer
             return None
         except Exception as e:

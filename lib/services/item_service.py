@@ -25,6 +25,7 @@ class ItemService:
             )
             session.add(item)
             session.commit()
+            session.refresh(item)
             return item
         except Exception as e:
             session.rollback()
@@ -83,6 +84,7 @@ class ItemService:
                     if hasattr(item, key):
                         setattr(item, key, value)
                 session.commit()
+                session.refresh(item)
                 return item
             return None
         except Exception as e:
@@ -118,6 +120,7 @@ class ItemService:
                 item.is_sold = True
                 item.date_sold = datetime.utcnow()
                 session.commit()
+                ession.refresh(item)
                 return item
             return None
         except Exception as e:
