@@ -1,36 +1,46 @@
-from sqlalchemy import Column, Integer, String, Float, Boolean, DateTime
+from sqlalchemy import Column, Integer, String, Float, DateTime, Text, Boolean
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from .base import Base
 
 class Item(Base):
-    __tablename__ = "items"
+    __tablename__ = 'items'
 
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, nullable=False, index=True)
-    category = Column(String, nullable=False, index=True)
+    id = Column(Integer, primary_key=True)
+    name = Column(String(200), nullable=False)
+    description = Column(Text)
+    category = Column(String(100), nullable=False)
     price = Column(Float, nullable=False)
-    condition = Column(String, nullable=False)
-    is_available = Column(Boolean, default=True, nullable=False)
-    created_at = Column(DateTime, default=datetime.utcnow)
-    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    cost = Column(Float, default=0.0)
+    quantity = Column(Integer, default=1)
+    condition = Column(String(50), default='Good')  # New, Excellent, Good, Fair, Poor
+    size = Column(String(20))  # For clothing items
+    brand = Column(String(100))
+    color = Column(String(50))
+    is_sold = Column(Boolean, default=False)
+    date_added = Column(DateTime, default=datetime.utcnow)
+    date_sold = Column(DateTime)
 
     # Relationships
     sale_items = relationship("SaleItem", back_populates="item")
 
     def __repr__(self):
-        return f"<Item(id={self.id}, name='{self.name}', price=${self.price:.2f})>"
+        return f"<Item(id={self.id}, name='{self.name}', price=${self.price})>"
 
     def to_dict(self):
-        """Convert to dictionary for JSON serialization"""
         return {
             'id': self.id,
             'name': self.name,
+            'description': self.description,
             'category': self.category,
             'price': self.price,
+            'cost': self.cost,
+            'quantity': self.quantity,
             'condition': self.condition,
-            'is_available': self.is_available,
-            'created_at': self.created_at.isoformat() if self.created_at else None,
-            'updated_at': self.updated_at.isoformat() if self.updated_at else None
+            'size': self.size,
+            'brand': self.brand,
+            'color': self.color,
+            'is_sold': self.is_sold,
+            'date_added': self.date_added.strftime('%Y-%m-%d %H:%M') if self.date_added else None,
+            'date_sold': self.date_sold.strftime('%Y-%m-%d %H:%M') if self.date_sold else None
         }
-lib/models/customer.p
